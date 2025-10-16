@@ -14,9 +14,13 @@ Before beginning the setup process, ensure the following software is installed o
 ## Tech Stack
 
 Frontend: React + Vite, Tailwind CSS
+
 Backend: NodeJS, ExpressJS, Prisma ORM
+
 Language: Typescript
+
 Database: PostgreSQL (Locally using Docker)
+
 Crawler: Puppeteer
 
 ---
