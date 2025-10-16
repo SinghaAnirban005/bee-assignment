@@ -11,6 +11,14 @@ Before beginning the setup process, ensure the following software is installed o
 | **PostgreSQL** | 14.0+        | Database system for job data storage         |
 | **Git**     | 2.0+            | Version control for cloning the repository   |
 
+## Tech Stack
+
+Frontend: React + Vite, Tailwind CSS
+Backend: NodeJS, ExpressJS, Prisma ORM
+Language: Typescript
+Database: PostgreSQL (Locally using Docker)
+Crawler: Puppeteer
+
 ---
 
 ## Step 1: Clone the Repository
