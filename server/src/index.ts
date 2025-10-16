@@ -53,12 +53,6 @@ app.get('/jobs', async(req: Request, res: Response) => {
 
       const total = await prisma.job.count({where})
 
-      if(!total){
-        res.status(400).json({
-            message: "Failed to get total"
-        })
-      }
-
       const jobs = await prisma.job.findMany({
         where,
         skip,
@@ -68,16 +62,9 @@ app.get('/jobs', async(req: Request, res: Response) => {
         }
       })
 
-      if(!jobs){
-        res.status(400).json({
-            message: "No jobs available"
-        })
-        return
-      }
-
       res.status(200).json({
-        jobs: jobs,
-        total: total,
+        jobs: jobs || [],
+        total: total || 0,
         page: pageNum,
         totalPages: Math.ceil(total / limitNum)
       })
@@ -109,7 +96,7 @@ app.get("/filters", async(req: Request, res: Response) => {
       },
       distinct: ['category'],
       where: {
-        NOT: [{ category: {not: ""}}]
+        NOT: [{ category: {equals: ""}}]
       }
     })
   
