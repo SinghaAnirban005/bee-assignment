@@ -17,6 +17,7 @@ Before beginning the setup process, ensure the following software is installed o
 
 ```bash
 git clone https://github.com/SinghaAnirban005/bee-assignment.git
+cd bee-assignment
 ```
 
 ## Step 2: Install pnpm
@@ -96,3 +97,38 @@ Access the application at: http://localhost:5173
 
 The client automatically proxies API requests to http://localhost:3000
 .
+
+---
+
+# Architectural Choices
+
+![alt text](image.png)
+
+### Three-Tier Architecture
+The application follows a classic three-tier pattern with React frontend, Express backend, and PostgreSQL database accessed via Prisma ORM
+
+### Web Scraping with Anti-Detection
+The crawler implements stealth techniques including user agent rotation, webdriver property masking, and realistic HTTP headers to avoid bot detection.
+
+### Human-Like Behavior Simulation
+Random delays and scrolling patterns to mimic human browsing behavior.
+
+### RESTful API Design
+The backend exposes /jobs endpoint with query parameters for search, filtering, pagination, and sorting.
+
+### Database Schema
+The Job model uses a composite unique constraint on source and sourceId to prevent duplicate job listings, with indexes on all searchable fields for performance.
+
+# Limitations
+
+### Limited Crawl Depth
+Crawler is configured to scrape a maximum of 3 pages per run
+
+### Single-Threaded Crawler
+Crawling is not parallelized, limiting throughput
+
+### Fragile Selectors
+Web scraping relies on Indeed's DOM structure which may change
+
+### No Job Expiration
+Old job listings are never automatically removed from the database
