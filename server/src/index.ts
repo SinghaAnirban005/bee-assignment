@@ -35,20 +35,20 @@ app.get('/jobs', async(req: Request, res: Response) => {
             { company: { contains: query as string, mode: 'insensitive' } },
             { description: { contains: query as string, mode: 'insensitive' } }
          ]
-
-         if(location){
-            where.location = { 
-                contains: location as string, mode: "insensitive"
-            }
+      }
+      
+      if(location){
+         where.location = { 
+             contains: location as string, mode: "insensitive"
          }
+      }
 
-         if(jobType){
-            where.jobType = jobType
-         }
+      if(jobType){
+         where.jobType = jobType
+      }
 
-         if(category){
-            where.category = category
-         }
+      if(category){
+         where.category = category
       }
 
       const total = await prisma.job.count({where})
