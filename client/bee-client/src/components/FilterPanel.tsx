@@ -1,5 +1,3 @@
-// import { Filters } from '../types/job';
-
 interface FilterPanelProps {
   filters: any;
   selectedJobType: string;

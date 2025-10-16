@@ -61,7 +61,7 @@ function App() {
 
   useEffect(() => {
     loadFilters();
-  }, []);
+  }, [selectedJobType, selectedCategory]);
 
   useEffect(() => {
     loadJobs();
