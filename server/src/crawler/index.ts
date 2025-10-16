@@ -29,7 +29,7 @@ class IndeedCrawler {
     backoffFactor: 2
   };
 
-  async crawl(searchQuery = 'software engineer', location = 'remote', maxPages = 3) {
+  async crawl(location = 'remote', maxPages = 3) {
     const browser = await puppeteer.launch({
       headless: true,
       args: ['--no-sandbox', '--disable-setuid-sandbox']
@@ -45,8 +45,8 @@ class IndeedCrawler {
         console.log(`Crawling page ${currentPage + 1}...`);
         
         const start = currentPage * 10;
-        const url = `${this.baseUrl}/jobs?q=${encodeURIComponent(searchQuery)}&l=${encodeURIComponent(location)}&start=${start}`;
-        
+        const url = `${this.baseUrl}/jobs?l=${encodeURIComponent(location)}&start=${start}`;
+
         const jobs = await this.retryWithBackoff(
           () => this.crawlJobListings(page, url),
           `crawl job listings page ${currentPage + 1}`
